@@ -1,0 +1,16 @@
+--Teori Himpunan
+--1.Union
+	--Menampilkan gabungan dari himpunan a dan b ,dengan irisan tidak tertulis 2x
+	--Jika menggunakan UNION ALL maka irisan akan tercetak 2 kali
+		--select*from Table 1
+		--union
+		--select*from Table 2
+--2.Except
+	--Hanya anggota dari masing masing himpunan tanpa irisan
+	--Tergantung pada urutan penulisan tablenya
+	--Jika Himpunan A dulu yang diquerry maka yang ditampilkan anggota himpunan A yang tidak beririsan dengan Himpunan B,Himpunan B tidak ditampilkan.
+		--select*from Table1
+		--except
+		--select*from Table2
+--3.Intersect
+	--Irisan dari himpunan a dan himpunan b
