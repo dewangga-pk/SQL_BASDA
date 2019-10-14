@@ -1,5 +1,53 @@
 use northwind
 --Modul 2 SUBQUERY DAN OPERASI HIMPUNAN
+--In not IN PUNYA ERSANDY
+
+--8
+select top 5 e.EmployeeID
+from Employees e 
+join Orders o on e.EmployeeID = o.EmployeeID
+join [Order Details] od on o.OrderID = od.OrderID
+group by e.EmployeeID
+order by sum (od.Quantity*od.UnitPrice) desc
+
+--9
+select o.OrderID
+from Orders o
+where employeeID in
+(select top 5 EmployeeID  from Orders o join [Order Details] od
+on o.OrderID=od.OrderID
+group by o.EmployeeID
+order by SUM(od.Quantity*od.UnitPrice) desc)
+
+--10
+select top 1 s.ShipperID
+from Shippers s 
+join Orders o on s.ShipperID = o.ShipVia
+group by s.ShipperID
+order by count(o.ShipVia) desc
+--10 (Sub Query)
+select s.ShipperID
+from Shippers s
+where s.ShipperID in
+(select top 1 ShipperID
+from Orders o join Shippers s on o.ShipVia=s.ShipperID
+group by s.ShipperID
+order by COUNT(o.OrderID)desc)
+
+--11
+select s.CompanyName,o.OrderID
+from Shippers s join orders o
+on s.ShipperID=o.ShipVia
+where s.ShipperID not in
+(select top 1 ShipperID
+from Orders o join Shippers s on o.ShipVia=s.ShipperID
+group by ShipperID
+order by COUNT(o.OrderID)desc)
+
+--12
+select p.ProductID,p.ProductName,p.UnitPrice
+from Products p
+where p.UnitPrice>(select AVG(p.UnitPrice) from products p)
 
 --Subquery exist dan not exist
 
