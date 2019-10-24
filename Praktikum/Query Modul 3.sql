@@ -108,3 +108,7 @@ group by c.CustomerID,c.CompanyName
 go
 
 select*from program1
+
+--Program 4 No.12
+select 
+from program1
